@@ -18,7 +18,7 @@ def share(s, n):
     sharing secret based on shamir secret sharing scheme in GF(p)
     '''
     secret = bytes_to_long(s)
-    n_bit = len(bin(secret)[2:]) + 256 # just for example, using n_bit prime
+    n_bit = secret.bit_length() + 256 # just for example, using n_bit prime
     p = getPrime(n_bit)
     while p < secret:
         p = getPrime(n_bit)
@@ -55,7 +55,7 @@ def getSecret(sharings, p):
 
 print('simulation: share a secret')
 secret = b'sebuah rahasia'
-n = 101
+n = 5
 sharings, p, k = share(secret, n)
 
 print('n:', n)
